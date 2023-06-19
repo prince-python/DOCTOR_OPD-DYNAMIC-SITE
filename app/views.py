@@ -16,14 +16,15 @@ def appoinment(request):
         email =request.POST['email']
         address =request.POST['add']
         id= request.POST['doctor']
-        doctor=Doctor.objects.get(id=id)
+        d=Doctor.objects.get(id=id)
         apoinment = request.POST.getlist('appoinment')
         date=request.POST['date']
         issue = request.POST['message']
-        Patient.objects.create(name=name,email=email,address=address,Doctor=doctor,apoinment=apoinment,date=date,issue=issue)
-        Patient.save()
+        P=Patient.objects.create(name=name,email=email,address=address,Doctor=d,apoinment=apoinment,date=date,issue=issue)
+        P.save()
         return render(request,'index.html')
-
+    else:
+        return render(request,'index.html')
 
 def confirm(request, id):
     activity.objects.all()
